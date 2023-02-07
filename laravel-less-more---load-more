@@ -1,0 +1,68 @@
+
+
+
+
+
+
+@if($key > -2) moreload @endif
+
+
+
+
+
+
+
+
+    <script>
+
+        var list1 = $(".moreload");
+        var numToShow1 = 4;
+        var button1 = $(".loadmore-btn");
+        var lessbutton1 = $(".lessmore-btn");
+        var numInList1 = list1.length;
+
+        list1.hide();
+
+        if (numInList1 > numToShow1) {
+            button1.show();
+        }
+
+        list1.slice(0, numToShow1).show();
+        button1.on('click', function() {
+            var showing1 = list1.filter(':visible').length;
+
+            list1.slice(showing1 - 1, showing1 + numToShow1).fadeIn();
+            var nowShowing1 = list1.filter(':visible').length;
+            if (nowShowing1 >= numInList1) {
+                button1.hide();
+                lessbutton1.show();
+            }
+        });
+
+
+        //---------------less more button jquery----
+        list1.slice(-4, numToShow1).show();
+        lessbutton1.on('click', function() {
+            var showing1 = list1.filter(':visible').length;
+
+            var showing1_target = showing1-4;
+
+            if (showing1_target >= 4) {
+                list1.slice(showing1 - 4, showing1 + numToShow1).fadeOut();
+            }else{
+                list1.slice(showing1 - showing1_target, showing1 + numToShow1).fadeOut();
+            }
+
+
+            var nowShowing1 = list1.filter(':visible').length;
+            var nowShowing_target = nowShowing1-4;
+
+            if (nowShowing_target <= 4) {
+                lessbutton1.hide();
+                button1.show();
+            }
+
+
+        });
+
+    </script>
